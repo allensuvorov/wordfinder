@@ -17,6 +17,22 @@
             
             let words = document.getElementById("words");
             
+            function fetchWords () {
+                fetch('http://localhost:8000/api/groupnames/')
+                    .then(response => response.json())
+                    .then(json => {
+                        // console.log(json);
+                        setGroupNames(json)
+                    })
+            }
+            
+            function filter (a,b,c){}
+
+            function popularLetters (a) {}
+            
+            function sort (a) {}
+
+
             document.querySelector('#searchform').onsubmit = () => {
                 console.log(words);
                 green = document.querySelector('#green').value
