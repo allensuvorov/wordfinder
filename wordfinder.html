@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <h1>WordFinder1.0</h1>
-    <form>
+    <form id="searchform">
         <input type="text" class="form-control" name="green" placeholder="gr**n">
         <input type="text" class="form-control" name="yellow" placeholder="yellow">
         <input type="text" class="form-control" name="grey" placeholder="grey">
@@ -14,7 +14,15 @@
     <div id="words"></div>
     <body>
         <script>
-            let words = getobjectbyid(words) 
+            
+            let words = document.getElementById("words");
+            
+            document.querySelector('#searchform').onsubmit = () => {
+                words.innerHTML = "new words";
+                
+            }
+
+            // console.log(words)
         </script>
     </body>
 </html>
