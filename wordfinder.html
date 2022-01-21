@@ -6,9 +6,9 @@
     </head>
     <h1>WordFinder1.0</h1>
     <form id="searchform">
-        <input type="text" class="form-control" name="green" placeholder="gr**n">
-        <input type="text" class="form-control" name="yellow" placeholder="yellow">
-        <input type="text" class="form-control" name="grey" placeholder="grey">
+        <input type="text" class="form-control" id="green" placeholder="gr**n">
+        <input type="text" class="form-control" id="yellow" placeholder="yellow">
+        <input type="text" class="form-control" id="grey" placeholder="grey">
         <button class="btn btn-primary">FindWords</button>
     </form>
     <div id="words"></div>
@@ -18,11 +18,12 @@
             let words = document.getElementById("words");
             
             document.querySelector('#searchform').onsubmit = () => {
-                words.innerHTML = "new words";
-                
+                console.log(words);
+                green = document.querySelector('#green').value
+                words.innerHTML = green;
+                return false;
             }
 
-            // console.log(words)
         </script>
     </body>
 </html>
