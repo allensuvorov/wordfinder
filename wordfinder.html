@@ -6,7 +6,7 @@
     </head>
     <h1>WordFinder1.0</h1>
     <form id="searchform">
-        <input type="text" class="form-control" id="green" placeholder="gr**n">
+        <input type="text" class="form-control" id="green" placeholder="gr??n">
         <input type="text" class="form-control" id="yellow" placeholder="yellow">
         <input type="text" class="form-control" id="grey" placeholder="grey">
         <button class="btn btn-primary">FindWords</button>
@@ -17,16 +17,17 @@
             
             let words = document.getElementById("words");
             
-            function fetchWords () {
-                fetch('http://localhost:8000/api/groupnames/')
-                    .then(response => response.json())
-                    .then(json => {
-                        // console.log(json);
-                        setGroupNames(json)
-                    })
+            function filterWords (json, yellow, grey){
+                let with_yellow = json.filter(
+                    item => {item.word.split('').some(char => yellow.includes(char))}
+                );
+                console.log(with_yellow)
+                let without_grey = with_yellow.filter(
+                    item => {!(item.word.split('').some(char => grey.includes(char)))}
+                )
+                let filtered = without_grey
+                return filtered
             }
-            
-            function filter (a,b,c){}
 
             function popularLetters (a) {}
             
@@ -34,9 +35,23 @@
 
 
             document.querySelector('#searchform').onsubmit = () => {
-                console.log(words);
+
                 green = document.querySelector('#green').value
-                words.innerHTML = green;
+                yellow = document.querySelector('#yellow').value
+                grey = document.querySelector('#grey').value
+                
+                let url = 'https://api.datamuse.com/words?sp=' + green;
+                
+                fetch(url)
+                    .then(response => response.json())
+                    .then(json => {
+                        console.log(json);
+                        
+                        //filtered = filterWords(json, yellow, grey)
+                        //words.innerHTML = filtered.map(item => " "+item.word);
+                        words.innerHTML = json.map(item => " "+item.word);
+                    })
+                
                 return false;
             }
 
