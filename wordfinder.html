@@ -7,8 +7,8 @@
     <h1>WordFinder1.0</h1>
     <form id="searchform">
         <input type="text" class="form-control" id="green" placeholder="gr??n">
-        <input type="text" class="form-control" id="yellow" placeholder="yellow">
-        <input type="text" class="form-control" id="grey" placeholder="grey">
+        <input type="text" class="form-control" id="yellow" placeholder="yellow (include)">
+        <input type="text" class="form-control" id="grey" placeholder="grey (exclude)">
         <button class="btn btn-primary">FindWords</button>
     </form>
     <div id="words"></div>
@@ -28,7 +28,11 @@
                 console.log(with_yellow)
                 let without_grey = with_yellow.filter(
                     item => {
-                        !(item.word.split('').some(char => grey.includes(char)))
+                        return !(
+                            grey.split('').some(char => {
+                                return item.word.split('').includes(char)
+                            })
+                        )
                     }
                 )
                 let filtered = without_grey
@@ -45,10 +49,6 @@
                 green = document.querySelector('#green').value
                 yellow = document.querySelector('#yellow').value
                 grey = document.querySelector('#grey').value
-                
-                green = "gr??n"
-                yellow = "erg"
-                grey = "a"
 
                 let url = 'https://api.datamuse.com/words?sp=' + green;
                 
@@ -59,8 +59,8 @@
                         
                         filtered = filterWords(json, yellow, grey)
                         console.log(filtered)
-                        //words.innerHTML = filtered.map(item => " "+item.word);
-                        words.innerHTML = json.map(item => " "+item.word);
+                        words.innerHTML = filtered.map(item => " "+item.word);
+                        //words.innerHTML = json.map(item => " "+item.word);
                     })
                 
                 return false;
