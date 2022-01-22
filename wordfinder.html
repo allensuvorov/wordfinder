@@ -19,11 +19,17 @@
             
             function filterWords (json, yellow, grey){
                 let with_yellow = json.filter(
-                    item => {item.word.split('').some(char => yellow.includes(char))}
+                    item => {
+                        return yellow.split('').every(char => {
+                            return item.word.split('').includes(char)
+                        })
+                    }
                 );
                 console.log(with_yellow)
                 let without_grey = with_yellow.filter(
-                    item => {!(item.word.split('').some(char => grey.includes(char)))}
+                    item => {
+                        !(item.word.split('').some(char => grey.includes(char)))
+                    }
                 )
                 let filtered = without_grey
                 return filtered
@@ -40,6 +46,10 @@
                 yellow = document.querySelector('#yellow').value
                 grey = document.querySelector('#grey').value
                 
+                green = "gr??n"
+                yellow = "erg"
+                grey = "a"
+
                 let url = 'https://api.datamuse.com/words?sp=' + green;
                 
                 fetch(url)
@@ -47,7 +57,8 @@
                     .then(json => {
                         console.log(json);
                         
-                        //filtered = filterWords(json, yellow, grey)
+                        filtered = filterWords(json, yellow, grey)
+                        console.log(filtered)
                         //words.innerHTML = filtered.map(item => " "+item.word);
                         words.innerHTML = json.map(item => " "+item.word);
                     })
