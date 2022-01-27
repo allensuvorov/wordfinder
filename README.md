@@ -1,2 +1,2 @@
 # wordfinder
-basic app that finds words for the wordle game
+Basic app that helps find words for the "wordle" game.
