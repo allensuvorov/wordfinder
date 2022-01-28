@@ -54,7 +54,7 @@
                 yellow = document.querySelector('#yellow').value
                 grey = document.querySelector('#grey').value
 
-                let url = 'https://api.datamuse.com/words?sp=' + green;
+                let url = 'https://api.datamuse.com/words?sp=' + green + "&max=1000";
                 
                 fetch(url)
                     .then(response => response.json())
