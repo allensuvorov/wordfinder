@@ -22,6 +22,7 @@
             let words = document.getElementById("words");
             
             function filterWords (json, yellow, grey){
+                
                 let with_yellow = json.filter(
                     item => {
                         return yellow.split('').every(char => {
@@ -29,7 +30,7 @@
                         })
                     }
                 );
-                console.log(with_yellow)
+                //console.log(with_yellow)
                 let without_grey = with_yellow.filter(
                     item => {
                         return !(
@@ -50,7 +51,8 @@
 
             document.querySelector('#searchform').onsubmit = () => {
 
-                green = document.querySelector('#green').value
+                //green = document.querySelector('#green').value
+                green = "p????,*e*"
                 yellow = document.querySelector('#yellow').value
                 grey = document.querySelector('#grey').value
 
@@ -61,7 +63,13 @@
                     .then(json => {
                         console.log(json);
                         
-                        filtered = filterWords(json, yellow, grey)
+                        let filtered = filterWords(json, yellow, grey)
+                        console.log(filtered)
+                        filtered = filtered.filter(
+                            item => {
+                                return item.word.slice(4,5)!="e"
+                            }
+                        )
                         console.log(filtered)
                         words.innerHTML = filtered.map(item => " "+item.word);
                         //words.innerHTML = json.map(item => " "+item.word);
