@@ -51,10 +51,12 @@
 
             document.querySelector('#searchform').onsubmit = () => {
 
-                //green = document.querySelector('#green').value
-                green = "p????,*e*"
+                green = document.querySelector('#green').value
                 yellow = document.querySelector('#yellow').value
                 grey = document.querySelector('#grey').value
+                
+                green = "ap???"
+                //yellow = "e:5,y:5"
 
                 let url = 'https://api.datamuse.com/words?sp=' + green + "&max=1000";
                 
