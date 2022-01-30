@@ -37,6 +37,7 @@
 
                 filtered = filtered.filter(item => {
                     let array_word = item.word.split('')
+                    if (array_word.length != 5) return false
                     console.log(array_word)
                     // check each word letter for a yellow in this position
                     let result = true
@@ -81,8 +82,8 @@
                 yellow = document.querySelector('#yellow').value
                 grey = document.querySelector('#grey').value
                 
-                green = "app??"
-                yellow = "w1,z2,e5,y5"
+                //green = "app??"
+                //yellow = "w1,z2,e5,y5"
 
                 let url = 'https://api.datamuse.com/words?sp=' + green + "&max=1000";
                 
