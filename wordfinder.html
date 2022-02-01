@@ -28,7 +28,6 @@
                 let array_yellow = ['','','','','']
                 yellow.split(',').forEach(
                     element => {
-                        //console.log(parseInt(element.slice(1,2)))
                         array_yellow[parseInt(element.slice(1,2))-1]+=element.slice(0,1)
                     }
                 )
@@ -38,13 +37,13 @@
                 filtered = filtered.filter(item => {
                     let array_word = item.word.split('')
                     if (array_word.length != 5) return false
-                    console.log(array_word)
+                    //console.log(array_word)
                     // check each word letter for a yellow in this position
                     let result = true
                     for (let i=0; i < array_word.length; i++) {
                         if (array_yellow[i].includes(array_word[i])) {
                             result = false
-                            console.log('includes = ' + result)
+                            console.log(array_word + ' includes = ' + result)
                             return result
                         }
                     }
@@ -90,16 +89,16 @@
                 fetch(url)
                     .then(response => response.json())
                     .then(json => {
-                        console.log(json);
+                        //console.log(json);
                         
                         let filtered = filterWords(json, yellow, grey)
-                        console.log(filtered)
+                        //console.log(filtered)
                         filtered = filtered.filter(
                             item => {
                                 return item.word.slice(4,5)!="e"
                             }
                         )
-                        console.log(filtered)
+                        //console.log(filtered)
                         words.innerHTML = filtered.map(item => " "+item.word);
                         //words.innerHTML = json.map(item => " "+item.word);
                     })
