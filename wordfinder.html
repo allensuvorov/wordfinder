@@ -77,9 +77,9 @@
 
             document.querySelector('#searchform').onsubmit = () => {
 
-                green = document.querySelector('#green').value.toLowerCase();
-                yellow = document.querySelector('#yellow').value.toLowerCase();
-                grey = document.querySelector('#grey').value.toLowerCase();
+                green = document.querySelector('#green').value.toLowerCase().trim();
+                yellow = document.querySelector('#yellow').value.toLowerCase().trim();
+                grey = document.querySelector('#grey').value.toLowerCase().trim();
                 
                 //green = "app??"
                 //yellow = "w1,z2,e5,y5"
